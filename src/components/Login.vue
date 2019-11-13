@@ -53,6 +53,7 @@
         // 未完成
         methods:{
             resetLoginForm(){
+                11111
                 console.log(this)
                 this.$refs.loginFormRef.resetFields;
             }
