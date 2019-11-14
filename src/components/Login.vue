@@ -8,11 +8,11 @@
 <!--  登录表单区域-->
   <el-form :model="loginForm" :rules="loginFormRules" class="login_form" ref="loginFormRef">
 <!--    用户名-->
-    <el-form-item prop="username">
+    <el-form-item prop="Username">
       <el-input prefix-icon="el-icon-user" v-model="loginForm.Username" ></el-input>
     </el-form-item>
 <!--    密码-->
-    <el-form-item prop="password">
+    <el-form-item prop="Password">
       <el-input prefix-icon="el-icon-s-goods" type="password" v-model="loginForm.Password" ></el-input>
     </el-form-item>
     <el-form-item  class="btns">
@@ -37,15 +37,15 @@
                 },
                 // 这是表单的验证规则对象
         loginFormRules:{
-                    // 验证用户名是否合法
-                   username:[
-                        // { required: true, message: '请输入用户名', trigger: 'blur' },
-                        // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'change' }
+                    // 验证用户名是否合法5
+                   Username:[
+                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                     ],
                     // 验证密码是否合法
-                    password:[
-                        // { required: true, message: '请输入登录密码', trigger: 'blur' },
-                        // { min: 6, max:15, message: '长度在 6 到 15 个字符', trigger: 'change' }
+                    Password:[
+                        { required: true, message: '请输入登录密码', trigger: 'blur' },
+                        { min: 6, max:15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
                     ]
                 }
             }
@@ -53,9 +53,8 @@
         // 未完成
         methods:{
             resetLoginForm(){
-                11111
                 console.log(this)
-                this.$refs.loginFormRef.resetFields;
+                this.$refs.loginFormRef.resetFields();
             }
         },
     };
