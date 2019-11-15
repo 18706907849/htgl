@@ -16,7 +16,7 @@
       <el-input prefix-icon="el-icon-s-goods" type="password" v-model="loginForm.Password" ></el-input>
     </el-form-item>
     <el-form-item  class="btns">
-    <el-button type="primary">登录</el-button>
+    <el-button @click="login" type="primary">登录</el-button>
     <el-button @click="resetLoginForm" type="info">重置</el-button>
     </el-form-item>
    </el-form>
@@ -50,11 +50,19 @@
                 }
             }
         },
-        // 未完成
+        // 表单事件处理
         methods:{
+            // 表单重置事件
             resetLoginForm(){
-                console.log(this)
+                // console.log(this)
                 this.$refs.loginFormRef.resetFields();
+            },
+            // 登录验证
+            login(){
+                this.$refs.loginFormRef.validate(valid =>{
+                    console.log(valid)
+
+                })
             }
         },
     };
