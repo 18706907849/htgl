@@ -6,18 +6,41 @@
     <img alt="" src="../assets/logo.png">
   </div>
 <!--  登录表单区域-->
-  <el-form :model="loginForm" :rules="loginFormRules" class="login_form" ref="loginFormRef">
+  <el-form
+    :model="loginForm"
+    :rules="loginFormRules"
+    class="login_form"
+    ref="loginFormRef"
+  >
 <!--    用户名-->
-    <el-form-item prop="Username">
-      <el-input prefix-icon="el-icon-user" v-model="loginForm.Username" ></el-input>
+    <el-form-item
+      prop="username"
+    >
+      <el-input
+        prefix-icon="el-icon-user"
+        v-model="loginForm.username"
+      ></el-input>
     </el-form-item>
 <!--    密码-->
-    <el-form-item prop="Password">
-      <el-input prefix-icon="el-icon-s-goods" type="password" v-model="loginForm.Password" ></el-input>
+    <el-form-item
+      prop="password"
+    >
+      <el-input
+        prefix-icon="el-icon-s-goods"
+        type="password"
+        v-model="loginForm.password"
+      ></el-input>
     </el-form-item>
-    <el-form-item  class="btns">
-    <el-button @click="login" type="primary">登录</el-button>
-    <el-button @click="resetLoginForm" type="info">重置</el-button>
+    <el-form-item
+      class="btns">
+    <el-button
+      @click="login"
+      type="primary"
+    >登录</el-button>
+    <el-button
+      @click="resetLoginForm"
+      type="info"
+    >重置</el-button>
     </el-form-item>
    </el-form>
 </div>
@@ -32,18 +55,18 @@
             return {
                 // 这是登录表单的数据绑定对象
         loginForm: {
-                    Username: '',
-                    Password: ''
+                    username: 'admin',
+                    password: '123456'
                 },
                 // 这是表单的验证规则对象
-        loginFormRules:{
-                    // 验证用户名是否合法5
-                   Username:[
+        loginFormRules: {
+                    // 验证用户名是否合法
+                   username: [
                         { required: true, message: '请输入用户名', trigger: 'blur' },
                         { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                     ],
                     // 验证密码是否合法
-                    Password:[
+                    password: [
                         { required: true, message: '请输入登录密码', trigger: 'blur' },
                         { min: 6, max:15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
                     ]
@@ -51,20 +74,22 @@
             }
         },
         // 表单事件处理
-        methods:{
+        methods: {
             // 表单重置事件
-            resetLoginForm(){
+            resetLoginForm() {
                 // console.log(this)
                 this.$refs.loginFormRef.resetFields();
             },
             // 登录验证
-            login(){
-                this.$refs.loginFormRef.validate(valid =>{
-                    console.log(valid)
-
+            login() {
+                this.$refs.loginFormRef.validate(async valid => {
+                  if(!valid) return;
+                  const {data:res} = await this.$http.post('login',this.loginForm);
+                  // if(res.meta.status !==200) return this.$message.error('错了哦，这是一条错误消息');
+                  // this.$message.success('错了哦，这是一条错误消息')
                 })
             }
-        },
+        }
     };
 </script>
 
